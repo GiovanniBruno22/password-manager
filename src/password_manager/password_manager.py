@@ -24,22 +24,26 @@ def main(args):
                     try:
                         addPassword(args.program, args.password, fernet)
                     except IndexError:
-                        print("\n Invalid choice, usage: pm -f add -p <program name> <password>.")          
+                        print("\n Invalid choice, usage: pm -f add -p <program name> <password>.")  
+                case "generate":
+                    if args.length:
+                        password = generateRandomPassword(int(args.length))
+                    else:
+                        print("--length missing, generating a 12 digits password...")
+                        password = generateRandomPassword(12)
+                    print(f"Your secure generated password is:\n{password}")
                 case _:
                     print("\n Invalid choice, usage: pm -f <add/get> -p <program name>.")
-        except ValueError:
-            print("Error: Fernet key must be 32 url-safe base64-encoded bytes. Have you entered the correct secret?")
+        except (ValueError, TypeError):
+            match choice:
+                case "setup":
+                    generatePassFile()
+                case _:
+                    print("Error: Fernet key must be 32 url-safe base64-encoded bytes. Have you forgot to entered the correct secret?")
     else:
         match choice:
             case "setup":
-                generatePassFile()
-            case "generate":
-                if args.length:
-                    password = generateRandomPassword(int(args.length))
-                else:
-                    print("--length missing, generating a 12 digits password...")
-                    password = generateRandomPassword(12)
-                print(f"Your secure generated password is:\n{password}")            
+                generatePassFile()          
             case _:
                 print("\n Database not found, please run 'pm -f setup' to set it up.")  
 
