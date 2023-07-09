@@ -49,7 +49,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/GiovanniBruno22/password_manager/issues.
+Report bugs at https://github.com/GiovanniBruno22/password-manager/issues.
 
 If you are reporting a bug, please include:
 
