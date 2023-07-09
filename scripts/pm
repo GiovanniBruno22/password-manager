@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+"""Console script for password-manager."""
+import argparse
+import sys
+import password_manager
+
+def main():
+    """Main entry point for password-manager's CLI."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--function", required=True,
+                help="function to use: possible options 'get', 'add', 'generate', 'setup'.")
+    parser.add_argument("-s", "--secret",
+                help="the secret that was used to setup and encrypt the database.")
+    parser.add_argument("-l", "--length",
+                help="Used in conjuction with 'generate', specifies how long the password should be")
+    parser.add_argument("-p", "--program",
+                help="Used in conjuction with 'get' or 'add', specifies the program name.")
+    parser.add_argument("-t", "--password",
+                help="Used in conjuction with 'add', specifies the password.")
+    args = parser.parse_args()
+    password_manager.main(args)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())  # pragma: no cover
