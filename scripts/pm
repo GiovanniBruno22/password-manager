@@ -4,6 +4,8 @@ import argparse
 import sys
 import password_manager
 
+sys.path.append('../src')
+
 def main():
     """Main entry point for password-manager's CLI."""
     parser = argparse.ArgumentParser()
